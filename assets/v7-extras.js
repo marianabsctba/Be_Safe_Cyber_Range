@@ -47,7 +47,7 @@
     'No notifications yet.':'Nenhuma notificação ainda.','No recent network activity':'Sem atividade de rede recente.','No direct intelligence. Consider pivoting by ASN, domain or certificate.':'Sem inteligência direta. Considere pivotar por ASN, domínio ou certificado.'
   };
   function tr(text){return translations[text]||phraseTranslations[text]||text}
-  function replacePhrases(v){let out=v;for(const [a,b] of Object.entries(phraseTranslations))if(out.includes(a))out=out.split(a).join(b);return out}
+  function replacePhrases(v){let out=v;for(const [a,b] of Object.entries(phraseTranslations)){/* Evita corromper marcas como OPENCTI, OpenSearch etc. Palavras isoladas só são traduzidas por correspondência exata em tr(). */if(!/[\s/:+&.-]/.test(a))continue;if(out.includes(a))out=out.split(a).join(b);}return out}
   function localize(root){
     qsa(root,'.side-nav button').forEach(b=>{if(!b.dataset.sectionOriginal)b.dataset.sectionOriginal=b.textContent.trim();b.textContent=tr(b.dataset.sectionOriginal)});
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;const nodes=[];while(n=walker.nextNode())nodes.push(n);
@@ -146,7 +146,44 @@
 
   function confetti(){const layer=document.createElement('div');layer.className='confetti-layer';const colors=['#c8ff3d','#3de7ff','#ff3d98','#ff8a3d','#57e389','#ffffff'];for(let i=0;i<120;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.background=colors[i%colors.length];p.style.animationDelay=(Math.random()*0.7)+'s';p.style.animationDuration=(1.7+Math.random()*1.8)+'s';p.style.transform=`rotate(${Math.random()*360}deg)`;layer.appendChild(p)}document.body.appendChild(layer);setTimeout(()=>layer.remove(),3800)}
   function welcome(emp){confetti();const p=roleProfiles[emp.role]||roleProfiles['Cybersecurity Analyst I'];const m=document.createElement('div');m.className='welcome-overlay';m.innerHTML=`<div class="welcome-card"><div class="welcome-mark">BS</div><div class="eyebrow">IDENTIDADE CRIADA COM SUCESSO</div><h1>Bem-vindo à Be Safe Corp .Inc,<br><em>${h(emp.name.split(' ')[0])}.</em></h1><p>Vc entrou como <b>${h(emp.role)}</b>. Seu turno já está acontecendo e o ambiente vai reagir às suas ações.</p><img src="${drawBadge(emp)}" alt="Crachá corporativo"/><div class="welcome-stats"><span><b>${h(emp.id)}</b>ID</span><span><b>${h(emp.workstation)}</b>Workstation</span><span><b>${h(p.focus)}</b>Foco</span></div><div class="toolbar"><button class="btn" data-welcome-badge>Baixar crachá PNG</button><button class="btn accent" data-welcome-next>Ver como trabalhar aqui →</button></div></div>`;document.body.appendChild(m);qs(m,'[data-welcome-badge]').onclick=()=>drawBadge(emp,true);qs(m,'[data-welcome-next]').onclick=()=>{m.remove();tour(emp)};}
-  function tour(emp){const p=roleProfiles[emp.role]||roleProfiles['Cybersecurity Analyst I'];const primary=p.primary.find(x=>!['workqueue','teams','slack','itsm','docs'].includes(x))||'soc';const tool=(BSCApps.meta[primary]||['',primary])[1];const steps=[['01','Comece pela Work Queue','Veja o que está atribuído ao seu turno. Não existe “próxima pergunta”: os casos coexistem.','workqueue'],['02',`Abra sua ferramenta principal: ${tool}`,'Seu cargo muda as prioridades e o conjunto principal de ferramentas. Investigue antes de agir.',primary],['03','Documente tudo no ITSM','Fato, hipótese, evidência, ação, validação e pendências. Os SLAs continuam correndo.','itsm'],['04','A empresa fala com vc','Teams e Slack recebem mensagens em tempo real de SOC, cliente, PMO, MSS, consultoria, gestão e infraestrutura.','teams'],['05','Consulte a documentação','Topologia, IP Plan, VLANs, runbooks e arquitetura fazem parte do trabalho.','docs'],['06','Seu perfil é avaliado por ação','O relatório considera sequência, impacto, gaps, comunicação e competências do seu cargo.','profile']];let i=0;const ov=document.createElement('div');ov.className='tour-overlay';document.body.appendChild(ov);function paint(){const [n,t,d,a]=steps[i];ov.innerHTML=`<div class="tour-card"><div class="tour-arrow">→</div><span>PASSO ${n} / ${String(steps.length).padStart(2,'0')}</span><h2>${h(t)}</h2><p>${h(d)}</p><div class="tour-progress">${steps.map((_,j)=>`<i class="${j<=i?'active':''}"></i>`).join('')}</div><div class="toolbar"><button class="btn" data-tour-skip>Pular</button><button class="btn accent" data-tour-open>Abrir agora</button><button class="btn" data-tour-next>${i===steps.length-1?'Começar turno':'Próximo →'}</button></div></div>`;qs(ov,'[data-tour-skip]').onclick=()=>ov.remove();qs(ov,'[data-tour-open]').onclick=()=>window.BSCUI?.openApp(a);qs(ov,'[data-tour-next]').onclick=()=>{if(i===steps.length-1){ov.remove();BSC.audit('tour_concluido',{minutes:0});return}i++;paint()}}paint();}
+  function tour(emp){
+    const p=roleProfiles[emp.role]||roleProfiles['Cybersecurity Analyst I'];
+    const primary=p.primary.find(x=>!['workqueue','teams','slack','itsm','docs'].includes(x))||'soc';
+    const tool=(BSCApps.meta[primary]||['',primary])[1];
+    const steps=[
+      {n:'01',title:'Comece pela Fila de Trabalho',desc:'Veja o que está atribuído ao seu turno. Os casos coexistem e o relógio continua correndo.',app:'workqueue',selector:'[data-app="workqueue"]'},
+      {n:'02',title:`Sua ferramenta principal: ${tool}`,desc:`Como ${emp.role}, esta é uma das ferramentas prioritárias do seu perfil. Investigue antes de agir.`,app:primary,selector:`[data-app="${primary}"]`},
+      {n:'03',title:'Documente tudo no ITSM',desc:'Registre fato, hipótese, evidência, ação, validação, impacto e pendências. Resolver sem documentar vira gap.',app:'itsm',selector:'[data-app="itsm"]'},
+      {n:'04',title:'A empresa fala com vc em tempo real',desc:'Teams e Slack recebem PMO, MSS, clientes, consultoria, SOC, Infra e war rooms. Nem toda mensagem exige a mesma prioridade.',app:'teams',selector:'[data-app="teams"]'},
+      {n:'05',title:'Use a documentação corporativa',desc:'IP Plan, VLANs, topologia, runbooks e matriz de responsabilidades fazem parte do trabalho.',app:'docs',selector:'#docsButton'},
+      {n:'06',title:'Seu desempenho é observado por ação',desc:'O perfil registra sequência, impacto, gaps, comunicação e competências específicas do seu cargo.',app:'profile',selector:'#profileButton'}
+    ];
+    let i=0;
+    const ov=document.createElement('div');ov.className='tour-overlay-v8';
+    ov.innerHTML='<div class="tour-spotlight-v8"></div><div class="tour-pointer-v8"><span>↓</span><b>OLHE AQUI</b></div><div class="tour-card-v8"></div>';
+    document.body.appendChild(ov);
+    const spot=qs(ov,'.tour-spotlight-v8'),pointer=qs(ov,'.tour-pointer-v8'),card=qs(ov,'.tour-card-v8');
+    function targetFor(step){const all=[...document.querySelectorAll(step.selector)];return all.find(x=>x.offsetParent!==null)||all[0]||document.querySelector('#startButton')}
+    function position(step){
+      const target=targetFor(step);if(!target)return;const r=target.getBoundingClientRect();const pad=10;
+      Object.assign(spot.style,{left:(r.left-pad)+'px',top:(r.top-pad)+'px',width:(r.width+pad*2)+'px',height:(r.height+pad*2)+'px'});
+      const above=r.top>120;pointer.querySelector('span').textContent=above?'↓':'↑';
+      Object.assign(pointer.style,{left:Math.max(12,Math.min(innerWidth-112,r.left+r.width/2-45))+'px',top:(above?Math.max(8,r.top-92):Math.min(innerHeight-80,r.bottom+18))+'px'});
+      if(innerWidth<760){Object.assign(card.style,{left:'16px',right:'16px',top:'auto',bottom:'18px',width:'auto'});}
+      else if(r.left<innerWidth/2){Object.assign(card.style,{left:'auto',right:'34px',top:Math.max(40,Math.min(innerHeight-430,r.top-40))+'px',bottom:'auto',width:'430px'});}
+      else{Object.assign(card.style,{right:'auto',left:'34px',top:Math.max(40,Math.min(innerHeight-430,r.top-40))+'px',bottom:'auto',width:'430px'});}
+    }
+    function paint(){
+      const step=steps[i];
+      card.innerHTML=`<span>PASSO ${step.n} / ${String(steps.length).padStart(2,'0')}</span><h2>${h(step.title)}</h2><p>${h(step.desc)}</p><div class="tour-progress">${steps.map((_,j)=>`<i class="${j<=i?'active':''}"></i>`).join('')}</div><div class="toolbar"><button class="btn" data-tour-skip>Pular</button><button class="btn accent" data-tour-open>Abrir agora</button><button class="btn" data-tour-next>${i===steps.length-1?'Começar turno':'Próximo →'}</button></div>`;
+      position(step);
+      qs(card,'[data-tour-skip]').onclick=()=>{ov.remove();BSC.audit('tour_pulado',{step:i+1,minutes:0})};
+      qs(card,'[data-tour-open]').onclick=()=>{window.BSCUI?.openApp(step.app);setTimeout(()=>position(step),80)};
+      qs(card,'[data-tour-next]').onclick=()=>{if(i===steps.length-1){ov.remove();BSC.audit('tour_concluido',{minutes:0});return}i++;paint()};
+    }
+    const reposition=()=>ov.isConnected&&position(steps[i]);window.addEventListener('resize',reposition,{passive:true});
+    paint();
+  }
 
   const registration={
     async count(){const api=window.BSC_CONFIG?.registrationApi;const el=document.getElementById('registrationCount');if(!el)return;if(!api){const local=Number(localStorage.getItem('bsc_local_registrations')||0);el.textContent=`${local} participante(s) neste dispositivo`;el.title='Contagem real local. Para total global entre todos os navegadores, publique o Worker incluído no pacote.';return}try{const r=await fetch(api.replace(/\/$/,'')+'/count');const j=await r.json();el.textContent=`${j.count.toLocaleString('pt-BR')} pessoas cadastradas`;el.dataset.global='1'}catch(e){el.textContent='contador temporariamente indisponível'}},
