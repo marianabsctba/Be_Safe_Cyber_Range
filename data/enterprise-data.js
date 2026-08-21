@@ -24,15 +24,15 @@
   );
 
   D.assets.push(
-    {id:'WEB-DMZ-01',type:'Server',os:'Ubuntu 24.04 LTS',ip:'172.16.10.20',vlan:110,site:'BSC-DC1-SP',owner:'Digital Platform',criticality:'High',edr:'Online',risk:'High'},
-    {id:'WAF-01',type:'WAF/API Gateway',os:'BeSafe Application Shield 4.2',ip:'172.16.10.5',vlan:110,site:'BSC-DC1-SP',owner:'AppSec',criticality:'Critical',edr:'N/A',risk:'Medium'},
-    {id:'JUMP-ADM-01',type:'Privileged Jump Host',os:'Windows Server 2025',ip:'10.60.10.20',vlan:60,site:'BSC-DC1-SP',owner:'PAM',criticality:'Critical',edr:'Online',risk:'High'},
+    {id:'WEB-DMZ-01',type:'Server',os:'Ubuntu 24.04 LTS',ip:'172.16.10.20',vlan:100,site:'BSC-DC1-SP',owner:'Digital Platform',criticality:'High',edr:'Online',risk:'High'},
+    {id:'WAF-01',type:'WAF/API Gateway',os:'BeSafe Application Shield 4.2',ip:'172.16.10.5',vlan:100,site:'BSC-DC1-SP',owner:'AppSec',criticality:'Critical',edr:'N/A',risk:'Medium'},
+    {id:'JUMP-ADM-01',type:'Privileged Jump Host',os:'Windows Server 2025',ip:'10.255.10.20',vlan:60,site:'BSC-DC1-SP',owner:'PAM',criticality:'Critical',edr:'Online',risk:'High'},
     {id:'BKP-CTRL-01',type:'Backup Server',os:'Hardened Linux',ip:'10.70.10.11',vlan:70,site:'BSC-DC1-SP',owner:'Backup Team',criticality:'Critical',edr:'Online',risk:'Low'},
     {id:'BSC-IMM-01',type:'Immutable Repository',os:'Hardened Linux',ip:'10.70.20.12',vlan:70,site:'BSC-DC1-SP',owner:'Backup Team',criticality:'Critical',edr:'N/A',risk:'Low'},
-    {id:'K8S-API-01',type:'Kubernetes Control Plane',os:'Kubernetes 1.34',ip:'10.80.10.10',vlan:80,site:'BSC-DC1-SP',owner:'Cloud Platform',criticality:'Critical',edr:'N/A',risk:'High'},
+    {id:'K8S-API-01',type:'Kubernetes Control Plane',os:'Kubernetes 1.34',ip:'10.90.20.10',vlan:90,site:'BSC-DC1-SP',owner:'Cloud Platform',criticality:'Critical',edr:'N/A',risk:'High'},
     {id:'FILE-HR-01',type:'File Server',os:'Windows Server 2025',ip:'10.40.30.25',vlan:40,site:'BSC-DC1-SP',owner:'HR',criticality:'High',edr:'Online',risk:'Medium'},
-    {id:'WS-HR-019',type:'Workstation',os:'Windows 11 24H2',ip:'10.20.33.19',vlan:20,site:'BSC-HQ-SP',owner:'Helena Rodrigues',criticality:'Medium',edr:'Online',risk:'High'},
-    {id:'WS-HR-027',type:'Workstation',os:'Windows 11 24H2',ip:'10.20.33.27',vlan:20,site:'BSC-HQ-SP',owner:'People Ops',criticality:'Medium',edr:'Online',risk:'Medium'},
+    {id:'WS-HR-019',type:'Workstation',os:'Windows 11 24H2',ip:'10.30.33.19',vlan:30,site:'BSC-HQ-SP',owner:'Helena Rodrigues',criticality:'Medium',edr:'Online',risk:'High'},
+    {id:'WS-HR-027',type:'Workstation',os:'Windows 11 24H2',ip:'10.30.33.27',vlan:30,site:'BSC-HQ-SP',owner:'People Ops',criticality:'Medium',edr:'Online',risk:'Medium'},
     {id:'FILE-FIN-01',type:'File Server',os:'Windows Server 2025',ip:'10.40.30.35',vlan:40,site:'BSC-DC1-SP',owner:'Finance',criticality:'Critical',edr:'Online',risk:'Medium'},
     {id:'ERP-FILE-01',type:'Application File Node',os:'RHEL 9',ip:'10.40.10.31',vlan:40,site:'BSC-DC1-SP',owner:'ERP Platform',criticality:'Critical',edr:'Online',risk:'Low'},
     {id:'NDR-SENSOR-01',type:'NDR Sensor',os:'Be Safe SensorOS',ip:'10.50.20.10',vlan:50,site:'BSC-DC1-SP',owner:'SOC',criticality:'High',edr:'N/A',risk:'Low'},
@@ -61,18 +61,18 @@
     {ts:'09:03:01',source:'api',host:'WEB-DMZ-01',event:'401_burst',user:'multiple',src:'198.18.1.0/24',dst:'172.16.10.20',message:'Authentication failures exceeded baseline x18 for /api/login'},
     {ts:'09:14:02',source:'cloud',host:'aws-prod-02',event:'PublicAccessBlockChanged',user:'marketing-ci',src:'10.90.10.20',dst:'bsc-marketing-export',message:'Bucket public access block disabled by legacy pipeline role'},
     {ts:'09:17:51',source:'cloud',host:'aws-prod-02',event:'GetObject',user:'anonymous',src:'203.0.113.77',dst:'bsc-marketing-export',message:'Anonymous object read: campaign_leads_Q3.csv'},
-    {ts:'09:31:22',source:'xdr',host:'FILE-HR-01',event:'ransomware_behavior',user:'BSC\\hrodrigues',src:'10.20.33.19',dst:'-',message:'High-rate rename + vssadmin shadow copy enumeration observed'},
+    {ts:'09:31:22',source:'xdr',host:'FILE-HR-01',event:'ransomware_behavior',user:'BSC\\hrodrigues',src:'10.30.33.19',dst:'-',message:'High-rate rename + vssadmin shadow copy enumeration observed'},
     {ts:'09:32:10',source:'backup',host:'BKP-CTRL-01',event:'auth_failure',user:'backup-admin',src:'10.40.30.25',dst:'10.70.10.11',message:'Multiple failed logins from FILE-HR-01 to backup controller'},
     {ts:'09:40:18',source:'dlp',host:'WS-FIN-044',event:'web_upload',user:'cnunes',src:'10.20.44.62',dst:'personal-drive.example',message:'clientes_Q3.xlsx contains CPF/email patterns; browser upload 18.2MB'},
     {ts:'09:48:06',source:'pam',host:'JUMP-ADM-01',event:'session_start',user:'adm_vendor',src:'10.60.20.44',dst:'10.40.1.10',message:'RDP privileged session started without correlated approved change'},
-    {ts:'09:49:33',source:'ndr',host:'NDR-SENSOR-01',event:'east_west_fanout',user:'adm_vendor',src:'10.60.10.20',dst:'10.40.0.0/16',message:'SMB fan-out 37 hosts / 90s + Kerberos service ticket anomaly'},
+    {ts:'09:49:33',source:'ndr',host:'NDR-SENSOR-01',event:'east_west_fanout',user:'adm_vendor',src:'10.255.10.20',dst:'10.40.0.0/16',message:'SMB fan-out 37 hosts / 90s + Kerberos service ticket anomaly'},
     {ts:'10:06:44',source:'physical',host:'BSC-DC1-ACS',event:'badge_granted',user:'vendor-8831',src:'DOOR-DC1-MANTRAP',dst:'R03',message:'Temporary vendor badge granted access to row R03; escort=required'},
-    {ts:'10:13:57',source:'firewall',host:'BSC-FW-A',event:'mgmt_allow',user:'adm_vendor',src:'10.60.10.20',dst:'10.255.10.11',message:'ALLOW TCP/443 JUMP-ADM-01 -> FW management zone policy=ADMIN_MGMT'},
+    {ts:'10:13:57',source:'firewall',host:'BSC-FW-A',event:'mgmt_allow',user:'adm_vendor',src:'10.255.10.20',dst:'10.255.10.11',message:'ALLOW TCP/443 JUMP-ADM-01 -> FW management zone policy=ADMIN_MGMT'},
     {ts:'10:27:12',source:'ci',host:'CI-RUNNER-01',event:'secret_detection',user:'pipeline',src:'10.90.10.20',dst:'-',message:'Potential API token exposed in environment variable LEGACY_EXPORT_TOKEN'},
     {ts:'10:41:10',source:'waf',host:'WAF-01',event:'path_probe',user:'-',src:'198.18.10.77',dst:'172.16.10.20',message:'Authorized simulation: unusual path enumeration against /legacy-support'},
     {ts:'10:44:31',source:'web',host:'WEB-DMZ-01',event:'sim_foothold',user:'svc-web',src:'198.18.10.77',dst:'172.16.10.20',message:'AUTHORIZED RANGE EVENT: simulated foothold token issued by exercise engine'},
-    {ts:'10:48:55',source:'ndr',host:'NDR-SENSOR-01',event:'sim_pivot',user:'svc-web',src:'172.16.10.20',dst:'10.60.10.20',message:'AUTHORIZED RANGE EVENT: DMZ-to-jump lateral path simulation'},
-    {ts:'10:52:04',source:'identity',host:'DC01',event:'sim_ticket',user:'svc-web',src:'10.60.10.20',dst:'10.40.1.10',message:'AUTHORIZED RANGE EVENT: anomalous service ticket request used by purple-team scenario'}
+    {ts:'10:48:55',source:'ndr',host:'NDR-SENSOR-01',event:'sim_pivot',user:'svc-web',src:'172.16.10.20',dst:'10.255.10.20',message:'AUTHORIZED RANGE EVENT: DMZ-to-jump lateral path simulation'},
+    {ts:'10:52:04',source:'identity',host:'DC01',event:'sim_ticket',user:'svc-web',src:'10.255.10.20',dst:'10.40.1.10',message:'AUTHORIZED RANGE EVENT: anomalous service ticket request used by purple-team scenario'}
   );
 
   D.xdr.endpoints['FILE-HR-01']={status:'Online',isolation:'Not isolated',risk:'Critical',lastUser:'BSC\\hrodrigues',evidenceCollected:false,processes:[['09:30:58','cmd.exe','cmd.exe /c whoami','normal'],['09:31:22','vssadmin.exe','vssadmin list shadows','critical'],['09:31:31','powershell.exe','powershell.exe -File inventory.ps1','high'],['09:31:49','rename-worker.exe','rename-worker.exe --path D:\\HR','critical']],network:[['09:32:10','10.70.10.11:443','HTTPS','12 KB'],['09:30:44','10.40.1.10:88','Kerberos','4 KB']]};
@@ -98,10 +98,10 @@
     {path:'/legacy-support',risk:'High',rps:1,auth:'Legacy token',status:'Exposed'}
   ]};
   D.ndr={sensors:[{id:'NDR-SENSOR-01',tap:'CORE-L3 SPAN 3',status:'Online',pps:18420}],flows:[
-    {time:'09:31',src:'10.20.33.19',dst:'10.40.30.25',proto:'SMB/Kerberos',score:98,note:'ransomware SMB spread + service-account reuse'},
+    {time:'09:31',src:'10.30.33.19',dst:'10.40.30.25',proto:'SMB/Kerberos',score:98,note:'ransomware SMB spread + service-account reuse'},
     {time:'09:32',src:'10.40.30.25',dst:'10.70.10.11',proto:'HTTPS/Auth',score:97,note:'file server probing backup control plane during ransomware behavior'},
-    {time:'09:49',src:'10.60.10.20',dst:'10.40.1.10',proto:'SMB/Kerberos',score:92,note:'fan-out + ticket anomaly'},
-    {time:'10:48',src:'172.16.10.20',dst:'10.60.10.20',proto:'HTTPS/RDP',score:88,note:'authorized attack simulation pivot'},
+    {time:'09:49',src:'10.255.10.20',dst:'10.40.1.10',proto:'SMB/Kerberos',score:92,note:'fan-out + ticket anomaly'},
+    {time:'10:48',src:'172.16.10.20',dst:'10.255.10.20',proto:'HTTPS/RDP',score:88,note:'authorized attack simulation pivot'},
     {time:'08:39',src:'10.20.21.44',dst:'185.231.72.19',proto:'TLS',score:89,note:'rare external destination'}
   ],blocked:[]};
   D.dlp={policies:[
