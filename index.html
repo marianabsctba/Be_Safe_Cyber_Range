@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Be Safe Corp. Inc.: uma empresa fictícia onde você aprende cibersegurança trabalhando em incidentes, projetos, reuniões, tickets e decisões realistas." />
+  <meta name="theme-color" content="#08090a" />
+  <title>Be Safe Corp. Inc. | Cyber Range</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <nav class="nav">
+    <a class="brand" href="#top"><span>BE</span><strong>SAFE</strong><i>CORP. INC.</i></a>
+    <div class="nav-links"><a href="#workspace">WORKSPACE</a><a href="#corp">EMPRESA</a><a href="#labs">MISSÕES</a><a href="#como-funciona">COMO FUNCIONA</a></div>
+    <a class="nav-cta" href="https://marianabsctba.github.io/Be_Safe_Academy/">← HUB PRINCIPAL</a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-copy">
+      <div class="eyebrow"><span></span> BE SAFE CORP. INC. / EMPLOYEE PORTAL / CYBERSECURITY</div>
+      <h1><span id="heroGreeting">VOCÊ FOI</span><br><em id="heroName">CONTRATADO.</em></h1>
+      <p id="heroCopy">Você não entrou em uma lista de labs. Você foi contratado por uma empresa fictícia com problemas assustadoramente reais. Teams, e-mail, reuniões, clientes, tickets, alertas e decisões fazem parte do seu expediente.</p>
+      <div class="hero-actions"><a class="button button-primary" id="primaryCta" href="#workspace">INICIAR PRIMEIRO DIA →</a><a class="button button-ghost" href="#corp">CONHECER A EMPRESA</a></div>
+      <div class="hero-stats">
+        <div><strong data-total-labs>30</strong><span>MISSÕES NO ROADMAP</span></div>
+        <div><strong data-live-labs>1</strong><span>INCIDENTE ATIVO</span></div>
+        <div><strong data-track-count>0</strong><span>ÁREAS DE CIBER</span></div>
+      </div>
+    </div>
+
+    <div class="employee-hero-card" id="heroBadge">
+      <div class="employee-card-head"><span>BE SAFE CORP. INC.</span><span class="live-dot">ACTIVE</span></div>
+      <div class="employee-photo" data-worker-initials>NH</div>
+      <div class="employee-card-name" data-worker-full>NOVO FUNCIONÁRIO</div>
+      <div class="employee-card-role">CYBERSECURITY OPERATIONS</div>
+      <div class="employee-card-id"><span>EMPLOYEE ID</span><strong data-worker-id>PENDING</strong></div>
+      <div class="employee-barcode" aria-hidden="true"></div>
+      <small>PROPERTY OF BE SAFE CORP. INC. // SIMULATED COMPANY</small>
+    </div>
+  </header>
+
+  <div class="ticker"><div>TEAMS ◆ MAIL ◆ SOC ◆ CLIENTES ◆ TICKETS ◆ REUNIÕES ◆ DFIR ◆ CLOUD ◆ IAM ◆ CTI ◆ APPSEC ◆ DETECTION ◆ CRISE ◆ PRÉ-VENDAS ◆ TEAMS ◆ MAIL ◆ SOC ◆ CLIENTES ◆</div></div>
+
+  <section class="section workspace-section" id="workspace">
+    <div class="section-head"><div><span class="section-number">01</span><h2>SEU <em>EXPEDIENTE.</em></h2></div><p>Este é o seu desktop corporativo. As missões acontecem dentro dos aplicativos da Be Safe Corp. Inc., e novos eventos aparecem conforme o seu trabalho avança.</p></div>
+
+    <div class="workspace-topbar">
+      <div><span class="side-label">SIGNED IN AS</span><strong data-worker-full>NOVO FUNCIONÁRIO</strong><small data-worker-meta>AGUARDANDO ONBOARDING</small></div>
+      <div class="workspace-clock"><span>STATUS DO TURNO</span><strong id="shiftStatus">OFFLINE</strong></div>
+      <button class="button button-ghost" id="editWorker">MEU CRACHÁ</button>
+    </div>
+
+    <div class="app-grid" id="appGrid">
+      <button class="corp-app" data-app="teams"><span class="app-icon">#</span><div><strong>Teams</strong><small>3 novas mensagens</small></div><b>3</b></button>
+      <button class="corp-app" data-app="mail"><span class="app-icon">@</span><div><strong>Mail</strong><small>Inbox corporativo</small></div><b>2</b></button>
+      <button class="corp-app" data-app="tickets"><span class="app-icon">!</span><div><strong>Tickets</strong><small>Fila de incidentes</small></div><b>1</b></button>
+      <button class="corp-app" data-app="meetings"><span class="app-icon">◉</span><div><strong>Meetings</strong><small>Agenda e war rooms</small></div><b>1</b></button>
+      <button class="corp-app" data-app="soc"><span class="app-icon">⌁</span><div><strong>SOC Console</strong><small>Alertas e investigação</small></div><b class="danger-pill">9</b></button>
+      <button class="corp-app" data-app="assets"><span class="app-icon">▦</span><div><strong>Assets</strong><small>Inventário corporativo</small></div><b>3.598</b></button>
+      <button class="corp-app" data-app="cti"><span class="app-icon">◎</span><div><strong>Threat Intel</strong><small>IOCs e campanhas</small></div><b>4</b></button>
+      <button class="corp-app" data-app="missions"><span class="app-icon">↗</span><div><strong>Work Queue</strong><small>Suas missões</small></div><b data-live-labs>1</b></button>
+      <button class="corp-app" data-app="performance"><span class="app-icon">◇</span><div><strong>My Performance</strong><small>Progresso e relatórios</small></div><b id="appCompleted">0</b></button>
+    </div>
+
+    <div class="shift-board">
+      <div class="shift-main">
+        <div class="scenario-kicker">TODAY // PRIORITY QUEUE</div>
+        <h3>SEU PRIMEIRO TURNO NÃO VAI SER TRANQUILO.</h3>
+        <p>Às 03:17, o SOC recebeu alertas de comportamento suspeito no ambiente financeiro. Há pressão para não interromper a operação. Seu Teams já tem mensagens. O ticket está aberto. O relógio começou.</p>
+        <a class="button button-lime" href="lab.html?id=soc-0317">ASSUMIR INCIDENTE INC-2026-0001 →</a>
+      </div>
+      <div class="shift-feed" id="shiftFeed">
+        <div><time>03:17</time><span>SOCBOT</span><p>9 alertas aguardando triagem.</p></div>
+        <div><time>03:19</time><span>Lucas / SOC N1</span><p>Tem um endpoint do Financeiro bem estranho. Pode olhar?</p></div>
+        <div><time>03:21</time><span>Renata / Infra</span><p>Por favor não isolem nada sem olhar impacto. Fechamento financeiro hoje.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section corp-section" id="corp">
+    <div class="section-head"><div><span class="section-number">02</span><h2>BEM-VINDO À <em>EMPRESA.</em></h2></div><p>A Be Safe Corp. Inc. é uma organização fictícia criada para que todos os cenários compartilhem pessoas, infraestrutura, clientes, incidentes e história.</p></div>
+    <div class="corp-layout">
+      <article class="corp-intro">
+        <div class="scenario-kicker">BE SAFE CORP. INC. // COMPANY PROFILE</div>
+        <h3>UMA EMPRESA FICTÍCIA.<br><em>PROBLEMAS BEM REAIS.</em></h3>
+        <p>Você trabalha na equipe de cibersegurança. Os mesmos funcionários, endpoints, servidores, aplicações, filiais, clientes e fornecedores reaparecem ao longo do seu emprego. Um detalhe ignorado hoje pode voltar como incidente amanhã.</p>
+        <p>Seu trabalho envolve investigação, arquitetura, comunicação, crise, reuniões, clientes e decisões sob pressão. Não existe botão mágico. E sim: o contador de dias sem incidente continua humilhantemente baixo.</p>
+      </article>
+      <div class="corp-facts">
+        <div><span>INDÚSTRIA</span><strong>TECNOLOGIA & SERVIÇOS</strong></div>
+        <div><span>FUNCIONÁRIOS</span><strong>2.847</strong></div>
+        <div><span>ENDPOINTS</span><strong>3.412</strong></div>
+        <div><span>SERVIDORES</span><strong>186</strong></div>
+        <div><span>FILIAIS</span><strong>7</strong></div>
+        <div><span>CLOUD</span><strong>AWS + AZURE</strong></div>
+        <div><span>SOC</span><strong>24×7</strong></div>
+        <div class="danger-fact"><span>DIAS SEM INCIDENTE</span><strong>0</strong></div>
+      </div>
+    </div>
+
+    <div class="team-strip">
+      <div><span>HC</span><strong>Helena Costa</strong><small>CISO // sua gestora</small></div>
+      <div><span>LM</span><strong>Lucas Martins</strong><small>SOC N1</small></div>
+      <div><span>JF</span><strong>Juliana Freitas</strong><small>SOC L2</small></div>
+      <div><span>RA</span><strong>Renata Alves</strong><small>Infraestrutura</small></div>
+      <div><span>PM</span><strong>Paula Mendes</strong><small>Jurídico / DPO</small></div>
+      <div><span>SB</span><strong>SOCBOT</strong><small>Automação // sem paciência</small></div>
+    </div>
+
+    <div class="worker-dashboard" id="workerDashboard">
+      <div class="worker-id-block"><span class="side-label">SEU CRACHÁ // BE SAFE CORP. INC.</span><strong id="workerName">NOVO FUNCIONÁRIO</strong><small id="workerMeta">CADASTRO PENDENTE</small></div>
+      <div class="worker-metric"><span>MISSÕES CONCLUÍDAS</span><strong id="workerCompleted">0/30</strong></div>
+      <div class="worker-metric"><span>EM ANDAMENTO</span><strong id="workerActive">0</strong></div>
+      <div class="worker-metric"><span>MELHOR SCORE</span><strong id="workerBest">—</strong></div>
+      <div class="worker-actions"><button class="button button-ghost" id="viewBadge">VER CRACHÁ</button><a class="button button-lime" id="continueShift" href="#labs">ABRIR FILA →</a></div>
+    </div>
+  </section>
+
+  <section class="section" id="labs">
+    <div class="section-head"><div><span class="section-number">03</span><h2>SUA FILA DE <em>TRABALHO.</em></h2></div><p>Não são labs isolados. São incidentes, projetos, solicitações e crises da Be Safe Corp. Inc. Algumas histórias continuam em outras missões.</p></div>
+    <div class="filter-bar" id="filters"></div>
+    <div class="lab-grid" id="labGrid"></div>
+  </section>
+
+  <section class="section alt" id="como-funciona">
+    <div class="section-head"><div><span class="section-number">04</span><h2>ISSO NÃO É <em>QUIZ.</em></h2></div><p>Você recebe informação por canais corporativos, investiga, conversa com times, participa de reuniões e toma decisões que alteram o cenário.</p></div>
+    <div class="workflow-grid">
+      <div class="workflow-step"><b>01 / ONBOARDING</b><strong>Você entra na empresa.</strong><p>Nome, crachá, employee ID, time, colegas e primeiro dia.</p></div>
+      <div class="workflow-step"><b>02 / WORKSPACE</b><strong>O trabalho chega.</strong><p>Teams, Mail, tickets, reuniões, SOC, ativos e clientes.</p></div>
+      <div class="workflow-step"><b>03 / DECISÃO</b><strong>Você escolhe.</strong><p>O ambiente reage. Pessoas respondem. O incidente pode piorar ou ser contido.</p></div>
+      <div class="workflow-step"><b>04 / CONTINUIDADE</b><strong>A empresa lembra.</strong><p>Progresso local, personagens recorrentes e histórias que atravessam missões.</p></div>
+      <div class="workflow-step"><b>05 / PERFORMANCE</b><strong>Você documenta.</strong><p>Score, decisões, MITRE, tempo e relatório nominal do seu turno.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer"><div><strong>Be Safe Corp. Inc. // Cyber Range</strong><small>EMPRESA FICTÍCIA • PROJETO COMUNITÁRIO • GRATUITO • CENÁRIOS EDUCACIONAIS</small></div><div><strong>Mariana BS</strong><small>CYBERSECURITY ENGINEER • BE SAFE</small></div></footer>
+
+  <div class="onboarding-overlay" id="onboardingOverlay" aria-hidden="true">
+    <div class="onboarding-shell" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
+      <div class="onboarding-progress"><span id="onboardingStepLabel">PEOPLE OPS // NOVA ADMISSÃO</span><div><i id="onboardingProgress"></i></div></div>
+      <div id="onboardingContent"></div>
+    </div>
+  </div>
+
+  <div class="app-overlay" id="appOverlay" aria-hidden="true">
+    <div class="app-window" role="dialog" aria-modal="true">
+      <div class="app-window-bar"><div><span class="app-dot"></span><strong id="appWindowTitle">APP</strong></div><button id="closeApp" aria-label="Fechar">×</button></div>
+      <div class="app-window-body" id="appWindowBody"></div>
+    </div>
+  </div>
+
+  <script src="data/labs.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
