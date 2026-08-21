@@ -1,0 +1,40 @@
+<svg viewBox="0 0 1200 690" xmlns="http://www.w3.org/2000/svg"><style>
+svg{background:#0b0d0f}.topo-lines path{fill:none;stroke:rgba(243,241,236,.35);stroke-width:2;stroke-dasharray:4 5}.topo-box rect{fill:#101317;stroke:rgba(243,241,236,.35);stroke-width:1.5}.topo-box text{fill:#f3f1ec;font:700 13px Arial,sans-serif;text-anchor:middle}.topo-box text.sub{fill:#b8b7b2;font-size:10px;font-weight:500}.topo-box text.tiny{fill:#777b80;font-size:8px;font-weight:500}.topo-box.edge rect{stroke:#ff3d98}.topo-box.security rect{stroke:#caff33}.topo-box.cyan rect{stroke:#3de7ff}.topo-box.cloud rect{stroke:#9e62ff}.topo-box.vlan rect{stroke:#65717a}.topo-box.small rect{stroke:#555b61}
+</style>
+            <title>Topologia canônica da Be Safe Corp. Inc.</title>
+            <desc>Internet redundante conecta edge routers e firewalls NGFW em HA. A partir deles há DMZ e core layer 3, que segmenta Financeiro, RH, rede corporativa, servidores, SOC e gerenciamento. Filiais chegam por SD-WAN e AWS/Azure por VPN. Todas as fontes enviam telemetria ao Wazuh e OpenSearch, com Velociraptor e OpenCTI/MISP.</desc>
+            <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="topo-arrow"/></marker></defs>
+            <g class="topo-lines">
+              <path d="M160 82 H300"/><path d="M160 132 H300"/><path d="M410 107 H505"/>
+              <path d="M620 107 H720"/><path d="M562 155 V230"/><path d="M780 155 V230"/>
+              <path d="M780 300 V365"/><path d="M780 420 V475"/><path d="M562 300 V365"/>
+              <path d="M562 420 V500"/><path d="M720 392 H650"/><path d="M840 392 H930"/>
+              <path d="M1040 392 V505"/><path d="M930 535 H835"/>
+              <path d="M610 545 H720"/><path d="M610 590 H720"/>
+              <path d="M290 500 H460"/><path d="M290 545 H460"/><path d="M290 590 H460"/>
+              <path d="M780 625 V650 H562 V625"/>
+            </g>
+
+            <g class="topo-box edge"><rect x="40" y="55" width="120" height="54" rx="8"/><text x="100" y="78">ISP A</text><text class="sub" x="100" y="96">INTERNET</text></g>
+            <g class="topo-box edge"><rect x="40" y="112" width="120" height="54" rx="8"/><text x="100" y="135">ISP B</text><text class="sub" x="100" y="153">INTERNET</text></g>
+            <g class="topo-box cyan"><rect x="300" y="70" width="110" height="74" rx="8"/><text x="355" y="98">EDGE</text><text class="sub" x="355" y="118">RTR-01 / 02</text></g>
+            <g class="topo-box security"><rect x="505" y="58" width="115" height="96" rx="8"/><text x="562" y="88">NGFW HA</text><text class="sub" x="562" y="108">FW-A / FW-B</text><text class="tiny" x="562" y="132">ACTIVE / PASSIVE</text></g>
+            <g class="topo-box edge"><rect x="720" y="58" width="120" height="96" rx="8"/><text x="780" y="86">DMZ</text><text class="sub" x="780" y="108">WAF • VPN</text><text class="tiny" x="780" y="130">REVERSE PROXY</text></g>
+
+            <g class="topo-box cyan"><rect x="505" y="230" width="115" height="70" rx="8"/><text x="562" y="258">SD-WAN</text><text class="sub" x="562" y="278">7 FILIAIS</text></g>
+            <g class="topo-box cyan"><rect x="720" y="230" width="120" height="70" rx="8"/><text x="780" y="258">CORE L3</text><text class="sub" x="780" y="278">2× SWITCH</text></g>
+
+            <g class="topo-box"><rect x="930" y="365" width="220" height="54" rx="8"/><text x="1040" y="388">IDENTITY PLANE</text><text class="sub" x="1040" y="406">AD • ENTRA • MFA • PAM • IGA</text></g>
+
+            <g class="topo-box vlan"><rect x="460" y="365" width="150" height="55" rx="8"/><text x="535" y="388">VLAN 20</text><text class="sub" x="535" y="406">FINANCE</text></g>
+            <g class="topo-box vlan"><rect x="650" y="365" width="130" height="55" rx="8"/><text x="715" y="388">VLAN 30</text><text class="sub" x="715" y="406">HR</text></g>
+            <g class="topo-box vlan"><rect x="800" y="365" width="130" height="55" rx="8"/><text x="865" y="388">VLAN 10</text><text class="sub" x="865" y="406">CORP</text></g>
+
+            <g class="topo-box"><rect x="460" y="500" width="150" height="125" rx="8"/><text x="535" y="525">DATACENTER</text><text class="sub" x="535" y="546">VMWARE</text><text class="tiny" x="535" y="568">WINDOWS / LINUX</text><text class="tiny" x="535" y="588">AD • FILE • DB • ERP</text><text class="tiny" x="535" y="608">BACKUP • MGMT</text></g>
+            <g class="topo-box security"><rect x="720" y="475" width="230" height="150" rx="8"/><text x="835" y="502">SOC / SECURITY DATA</text><text class="sub" x="835" y="527">WAZUH + OPENSEARCH</text><text class="tiny" x="835" y="550">EDR • SYSMON • DNS • PROXY</text><text class="tiny" x="835" y="571">NGFW • VPN • CLOUD • M365</text><text class="tiny" x="835" y="592">VELOCIRAPTOR • OPENCTI • MISP</text></g>
+            <g class="topo-box cloud"><rect x="930" y="505" width="220" height="120" rx="8"/><text x="1040" y="532">HYBRID CLOUD</text><text class="sub" x="1040" y="555">AWS + AZURE</text><text class="tiny" x="1040" y="578">SITE-TO-SITE VPN</text><text class="tiny" x="1040" y="598">KUBERNETES / APPS</text></g>
+
+            <g class="topo-box small"><rect x="120" y="475" width="170" height="50" rx="8"/><text x="205" y="498">VLAN 50 // SOC</text><text class="sub" x="205" y="516">ANALYST WORKSTATIONS</text></g>
+            <g class="topo-box small"><rect x="120" y="530" width="170" height="50" rx="8"/><text x="205" y="553">VLAN 60 // MGMT</text><text class="sub" x="205" y="571">ADMIN / JUMP HOSTS</text></g>
+            <g class="topo-box small"><rect x="120" y="585" width="170" height="50" rx="8"/><text x="205" y="608">VLAN 70 // GUEST</text><text class="sub" x="205" y="626">INTERNET ONLY</text></g>
+          </svg>
