@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071018"/><stop offset="1" stop-color="#0b1822"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".35"/></filter>
+  <style><![CDATA[
+    text{font-family:Arial,Helvetica,sans-serif;fill:#e7f0f5}.title{font-size:34px;font-weight:800}.sub{font-size:15px;fill:#8ea5b2}.box{fill:#0e1b25;stroke:#2d4b5c;stroke-width:2;rx:14}.zone{fill:#0b1720;stroke:#274553;stroke-width:2;rx:18}.label{font-size:17px;font-weight:800}.small{font-size:13px;fill:#9cb0bc}.tiny{font-size:11px;fill:#728a97}.cyan{fill:#3de7ff}.lime{fill:#c8ff3d}.orange{fill:#ff9b56}.red{fill:#ff6971}.green{fill:#65e895}.line{stroke:#55788b;stroke-width:3;fill:none}.dash{stroke-dasharray:9 7}.link{stroke:#3de7ff}.ha{stroke:#c8ff3d;stroke-width:4}.site{fill:#101e29;stroke:#355466;stroke-width:2;rx:12}
+  ]]></style>
+</defs>
+<rect width="1600" height="1040" fill="url(#bg)"/>
+<text x="55" y="58" class="title">BE SAFE CORP .INC - TOPOLOGIA CORPORATIVA</text>
+<text x="55" y="86" class="sub">Fonte autoritativa v7 · rede, segurança, identidade, datacenter e sites</text>
+
+<!-- Internet / WAN -->
+<rect x="610" y="115" width="380" height="90" class="box" filter="url(#shadow)"/>
+<text x="800" y="150" text-anchor="middle" class="label cyan">INTERNET / WAN EDGE</text>
+<text x="800" y="178" text-anchor="middle" class="small">ISP-A 203.0.113.9 · ISP-B 198.51.100.9 · BGP/SD-WAN</text>
+<path d="M800 205 L800 248" class="line link"/>
+
+<!-- Firewall cluster -->
+<rect x="530" y="250" width="540" height="145" class="zone"/>
+<text x="555" y="278" class="label lime">BSC-EDGE-HA · EdgeGate NGFW</text>
+<rect x="575" y="300" width="185" height="62" class="box"/><text x="667" y="326" text-anchor="middle" class="label">BSC-FW-A</text><text x="667" y="348" text-anchor="middle" class="tiny">10.255.10.11 · ACTIVE</text>
+<rect x="840" y="300" width="185" height="62" class="box"/><text x="932" y="326" text-anchor="middle" class="label">BSC-FW-B</text><text x="932" y="348" text-anchor="middle" class="tiny">10.255.10.12 · STANDBY</text>
+<path d="M760 318 L840 318" class="ha"/><text x="800" y="310" text-anchor="middle" class="tiny lime">HA1</text><path d="M760 346 L840 346" class="ha dash"/><text x="800" y="374" text-anchor="middle" class="tiny orange">HA2 / session sync</text>
+
+<!-- DMZ -->
+<path d="M630 395 L350 445" class="line"/><rect x="95" y="430" width="500" height="170" class="zone"/><text x="120" y="460" class="label orange">DMZ · VLAN100 · 172.16.10.0/24</text>
+<rect x="125" y="490" width="130" height="72" class="box"/><text x="190" y="518" text-anchor="middle" class="label">WAF/API</text><text x="190" y="542" text-anchor="middle" class="tiny">portal + /api</text>
+<rect x="280" y="490" width="130" height="72" class="box"/><text x="345" y="518" text-anchor="middle" class="label">WEB-DMZ-01</text><text x="345" y="542" text-anchor="middle" class="tiny">public web</text>
+<rect x="435" y="490" width="130" height="72" class="box"/><text x="500" y="518" text-anchor="middle" class="label">MAIL / SEG</text><text x="500" y="542" text-anchor="middle" class="tiny">SMTP gateway</text>
+
+<!-- Core -->
+<path d="M800 395 L800 440" class="line link"/><rect x="675" y="440" width="250" height="80" class="box"/><text x="800" y="471" text-anchor="middle" class="label cyan">CORE-SW-01 / 02</text><text x="800" y="496" text-anchor="middle" class="small">L3 · VRRP · LACP · 34 switches</text>
+
+<!-- VLAN zones -->
+<path d="M800 520 L800 560" class="line"/>
+<rect x="620" y="560" width="360" height="420" class="zone"/><text x="645" y="590" class="label cyan">LAN / DATACENTER SEGMENTS</text>
+<g>
+<rect x="650" y="615" width="140" height="68" class="box"/><text x="720" y="640" text-anchor="middle" class="label">VLAN 20</text><text x="720" y="661" text-anchor="middle" class="tiny">FIN · 10.20.0.0/16</text>
+<rect x="810" y="615" width="140" height="68" class="box"/><text x="880" y="640" text-anchor="middle" class="label">VLAN 30</text><text x="880" y="661" text-anchor="middle" class="tiny">RH · 10.30.0.0/16</text>
+<rect x="650" y="700" width="140" height="68" class="box"/><text x="720" y="725" text-anchor="middle" class="label">VLAN 40</text><text x="720" y="746" text-anchor="middle" class="tiny">SERVERS · 10.40.0.0/16</text>
+<rect x="810" y="700" width="140" height="68" class="box"/><text x="880" y="725" text-anchor="middle" class="label">VLAN 50</text><text x="880" y="746" text-anchor="middle" class="tiny">SOC · 10.50.0.0/16</text>
+<rect x="650" y="785" width="140" height="68" class="box"/><text x="720" y="810" text-anchor="middle" class="label">VLAN 60</text><text x="720" y="831" text-anchor="middle" class="tiny">MGMT · 10.255.10.0/24</text>
+<rect x="810" y="785" width="140" height="68" class="box"/><text x="880" y="810" text-anchor="middle" class="label">VLAN 70</text><text x="880" y="831" text-anchor="middle" class="tiny">BACKUP · 10.70.0.0/16</text>
+<rect x="650" y="870" width="140" height="68" class="box"/><text x="720" y="895" text-anchor="middle" class="label">VLAN 80</text><text x="720" y="916" text-anchor="middle" class="tiny">GUEST · 10.80.0.0/16</text>
+<rect x="810" y="870" width="140" height="68" class="box"/><text x="880" y="895" text-anchor="middle" class="label">VLAN 90</text><text x="880" y="916" text-anchor="middle" class="tiny">CI/CLOUD · 10.90.0.0/16</text>
+</g>
+
+<!-- Security plane -->
+<path d="M925 480 L1110 480" class="line"/><rect x="1090" y="425" width="430" height="300" class="zone"/><text x="1118" y="457" class="label lime">SECURITY / OBSERVABILITY PLANE</text>
+<rect x="1120" y="485" width="170" height="70" class="box"/><text x="1205" y="514" text-anchor="middle" class="label">SIEM</text><text x="1205" y="538" text-anchor="middle" class="tiny">Wazuh + OpenSearch</text>
+<rect x="1320" y="485" width="170" height="70" class="box"/><text x="1405" y="514" text-anchor="middle" class="label">XDR / EDR</text><text x="1405" y="538" text-anchor="middle" class="tiny">Sysmon + endpoint</text>
+<rect x="1120" y="580" width="170" height="70" class="box"/><text x="1205" y="609" text-anchor="middle" class="label">NDR</text><text x="1205" y="633" text-anchor="middle" class="tiny">east-west sensors</text>
+<rect x="1320" y="580" width="170" height="70" class="box"/><text x="1405" y="609" text-anchor="middle" class="label">CTI</text><text x="1405" y="633" text-anchor="middle" class="tiny">OpenCTI + MISP</text>
+<rect x="1120" y="665" width="170" height="38" class="box"/><text x="1205" y="689" text-anchor="middle" class="small">PAM / IAM / AD</text>
+<rect x="1320" y="665" width="170" height="38" class="box"/><text x="1405" y="689" text-anchor="middle" class="small">DFIR / Backup</text>
+
+<!-- sites -->
+<rect x="95" y="650" width="450" height="330" class="zone"/><text x="120" y="681" class="label cyan">SITES / WAN CORPORATIVA</text>
+<g class="small">
+<rect x="125" y="710" width="180" height="55" class="site"/><text x="215" y="735" text-anchor="middle" class="label">BSC-HQ-SP</text><text x="215" y="754" text-anchor="middle" class="tiny">usuários + SOC</text>
+<rect x="330" y="710" width="180" height="55" class="site"/><text x="420" y="735" text-anchor="middle" class="label">BSC-DC1-SP</text><text x="420" y="754" text-anchor="middle" class="tiny">R03 / R07 / R12</text>
+<rect x="125" y="785" width="180" height="55" class="site"/><text x="215" y="810" text-anchor="middle" class="label">BSC-RJ</text><text x="215" y="829" text-anchor="middle" class="tiny">IPsec / SD-WAN</text>
+<rect x="330" y="785" width="180" height="55" class="site"/><text x="420" y="810" text-anchor="middle" class="label">BSC-BSB</text><text x="420" y="829" text-anchor="middle" class="tiny">IPsec / SD-WAN</text>
+<rect x="125" y="860" width="180" height="55" class="site"/><text x="215" y="885" text-anchor="middle" class="label">BSC-CWB</text><text x="215" y="904" text-anchor="middle" class="tiny">IPsec / SD-WAN</text>
+<rect x="330" y="860" width="180" height="55" class="site"/><text x="420" y="885" text-anchor="middle" class="label">BSC-REC / POA</text><text x="420" y="904" text-anchor="middle" class="tiny">IPsec / SD-WAN</text>
+</g>
+<path d="M545 792 L620 792" class="line dash"/>
+
+<text x="1090" y="775" class="small">Ativos canônicos: WS-FIN-021 · WS-HR-019 · APP-PROD-01 · DB-PROD-01 · DC01</text>
+<text x="1090" y="802" class="small">Datacenter: R03 Network/Security · R07 Identity/Management · R12 Applications/Data</text>
+<text x="1090" y="829" class="small">Backup: BKP-CTRL-01 · BSC-IMM-01 · VLAN70 · cópia imutável</text>
+<text x="1090" y="856" class="small">Management: JUMP-ADM-01 + PAM · acesso auditado · VLAN60</text>
+<text x="1090" y="913" class="tiny">Todas as redes e endereços são fictícios e exclusivos do Cyber Range.</text>
+<text x="1090" y="939" class="tiny">Versão 7 · 21/08/2026 · Be Safe Corp .Inc</text>
+</svg>
